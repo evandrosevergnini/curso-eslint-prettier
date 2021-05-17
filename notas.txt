@@ -1,25 +1,34 @@
-- Inicializar projeto: npm --init
-- Instalar ESLint como dependência do projeto: npm install --save-dev eslint
-- Inicializar arquivo de configuração do ESLint: npx eslint --init ou node_modules/.bin/eslint --init
-    ✔ How would you like to use ESLint? · problems (Opção Default)
-    ✔ What type of modules does your project use? · esm
-    ✔ Which framework does your project use? · none
-    ✔ Does your project use TypeScript? · No / Yes
-    ✔ Where does your code run? · browser
-    ✔ What format do you want your config file to be in? · JSON
-    Successfully created .eslintrc.json file in /Users/evandrosevergnini/Desktop/eslint-apps/curso-eslint-prettier
-  - No arquivo package.json adicione na propriedade scripts:
-      "scripts": {
-        "lint": "node_modules/.bin/eslint src/"
-      },
-  - Execute o comando no terminal: npm run lint
-    Deve aparecer a mensagem abaixo, no terminal; 
-      Oops! Something went wrong! :(
-      ESLint: 7.26.0
-      No files matching the pattern "lint" were found.
-      Please check for typing mistakes in the pattern.
-    
-    👍 Tudo bem! O ESLint já está rodando e procurando por arquivos na pasta src do projeto, que ainda não foram criados.
-  - Crie a pasta src e um arquivo main.js dentro dela
-  - Adicione algum código JavaScript para testar o ESLint
-  _ Rode novamente o comando: npm run lint
+- Na Activity Bar do VS Code clique no ícone de extensóes e busque por ESLint
+- Instale a extensão com id dbaeumer.vscode-eslint, normalmente a primeira da lista
+- Abra o arquivo main.js
+- Observe se os erros estão sendo apresentados na tela, provavelmente não estáo
+- Observe se a opção ESLint na Status Bar está bloqueada
+- Habilite a execução do ESLint
+- Agora os erros devem estar sendo exibidos
+- Passe o mouse sobre qualquer dos erros e observe uma pequena modal com informações trazidas pelo ESLint
+- Observe que é exibida uma descrição do erro capturado e na sequência um link com o nome da regra violada
+- Clique nesse link e explore a página com a documentação da regra
+  ✔ The "extends": "eslint:recommended" property in a configuration file enables this rule.
+  ✔ Veja explicações sobre o porquê da regra
+  ✔ Exemplos de uso incorreto
+  ✔ Exemplos de uso correto
+  ✔ Na seção Options, exemplo de configuração
+  ✔ Na seção Resources há links para o código-fonte da regra
+- Procure o código fonte da regra no-alert e veja a estrutura da regra:
+  ✔ é exportado um objeto com as proprieades meta e create
+- De volta ao arquivo main.js:
+  ✔ Passe o mouse sobre um dos erros e clique em Quick Fix
+  ✔ Experimente a configuração de regras usando comentários
+- No arquivo .eslintrc.json explique a sua estrutura básica e o funcionamento das regras
+  ✔ Desabilitar e habilitar a propriedade "extends": "eslint:recommended"
+  ✔ Mostrar na documentação as regras recomendadas
+  ✔ Mostrar na documentação as regras passíveis de serem fixadas
+- Mostrar como usar a flag --fix do ESLint
+  ✔ Adicionar em package.json o script: "lint-fix": "node_modules/.bin/eslint --fix src/"
+  ✔ No arquivo main.js adicionar ";" extras ao final das declarações
+- Rodar: npm run lint-fix
+  ✔ Observe que nem tudo foi corrigidos
+  ✔ Entender porque isso aconteceu examinando a documentação das regras violodas no arquivo main.js
+
+
+

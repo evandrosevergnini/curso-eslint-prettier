@@ -4,7 +4,8 @@
   "description": "Curso Aprendendo a configurar e usar ESLint com Prettier",
   "main": "index.js",
   "scripts": {
-    "lint": "node_modules/.bin/eslint src/"
+    "lint": "node_modules/.bin/eslint src/",
+    "lint-fix": "node_modules/.bin/eslint --fix src/"
   },
   "repository": {
     "type": "git",
