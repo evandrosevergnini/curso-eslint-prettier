@@ -1,0 +1,26 @@
+{
+  "name": "curso-eslint-prettier",
+  "version": "1.0.0",
+  "description": "Curso Aprendendo a configurar e usar ESLint com Prettier",
+  "main": "index.js",
+  "scripts": {
+    "lint": "node_modules/.bin/eslint src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evandrosevergnini/curso-eslint-prettier.git"
+  },
+  "keywords": [
+    "ESLint",
+    "Prettier"
+  ],
+  "author": "Evandro C. Severgnini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/evandrosevergnini/curso-eslint-prettier/issues"
+  },
+  "homepage": "https://github.com/evandrosevergnini/curso-eslint-prettier#readme",
+  "devDependencies": {
+    "eslint": "^7.26.0"
+  }
+}

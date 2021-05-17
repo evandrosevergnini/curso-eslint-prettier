@@ -1,0 +1,25 @@
+- Inicializar projeto: npm --init
+- Instalar ESLint como dependência do projeto: npm install --save-dev eslint
+- Inicializar arquivo de configuração do ESLint: npx eslint --init ou node_modules/.bin/eslint --init
+    ✔ How would you like to use ESLint? · problems (Opção Default)
+    ✔ What type of modules does your project use? · esm
+    ✔ Which framework does your project use? · none
+    ✔ Does your project use TypeScript? · No / Yes
+    ✔ Where does your code run? · browser
+    ✔ What format do you want your config file to be in? · JSON
+    Successfully created .eslintrc.json file in /Users/evandrosevergnini/Desktop/eslint-apps/curso-eslint-prettier
+  - No arquivo package.json adicione na propriedade scripts:
+      "scripts": {
+        "lint": "node_modules/.bin/eslint src/"
+      },
+  - Execute o comando no terminal: npm run lint
+    Deve aparecer a mensagem abaixo, no terminal; 
+      Oops! Something went wrong! :(
+      ESLint: 7.26.0
+      No files matching the pattern "lint" were found.
+      Please check for typing mistakes in the pattern.
+    
+    👍 Tudo bem! O ESLint já está rodando e procurando por arquivos na pasta src do projeto, que ainda não foram criados.
+  - Crie a pasta src e um arquivo main.js dentro dela
+  - Adicione algum código JavaScript para testar o ESLint
+  _ Rode novamente o comando: npm run lint
