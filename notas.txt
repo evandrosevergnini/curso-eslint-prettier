@@ -1,31 +1,32 @@
-- Instale o plugin Prettier - Code formatter no VS Code
-- Instale o Prettier com dependência de denvolvimento no projeto:
-  ✔ npm install prettier -D --save-exact
-- Configure o Prettier para uso no VS Code
-  ✔ (CTRL+SHIFT+P) >settings (opção JSON)
-  ✔ Adicione as linhas 
-    ✔ "editor.formatOnSave": true,
-    ✔ "editor.defaultFormatter": "esbenp.prettier-vscode"
-    ✔ "prettier.requireConfig": true,
-    ✔ "prettier.resolveGlobalModules": false,
-  ✔ Crie um arquivo de configuração .prettierrc
-  ✔ Adicione um objeto de configuração:
-    ✔ {
-        "singleQuote": true
-      }
-  ✔️ No arquivo main.js triplique a linha de console, como abaixo:
-    ✔️ console.log("result", resultado);
-      console.log("result", resultado);
-      console.log(`result`, resultado);    
-  ✔️ Salve o arquivo e observe que a formatação foi substituída para single quotes, exceto a que usa backtick
-  ✔️ No arquivo .eslintrc.json adicione a seguinte rule:
-    ✔ "rules": {
-        "quotes": ["error", "double", { "allowTemplateLiterals": true }]
-      }
+- Vamos delegar ao Prettier a responsibilidade de formatar nosso código, 
+  desabilitando todas as regras que possam entrar em conflito,
+  mas antes vamos instalar e configurar outro conjunto de regras bastante conhecido:
+  ✔️ npm install --save-dev eslint-config-airbnb
+  ✔️ "extends": ["eslint:recommended", "airbnb"],
+  ✔️ Comente as regras:
+    "rules": {
+      //"quotes": ["error", "double", { "allowTemplateLiterals": true }]
+    }
+- Observe que agora o ESLint reporta outros problemas no arquivo main.js
+  ❗ um erro na arrow function
+  ❕ um warning na chamada ao console
+ - Altere o arquivo .prettierrc para:
+    {
+      "singleQuote": false
+    }
+- Abra e salve o arquivo main.js
+- Observe que as aspas mudaram para duplas e o ESLint reclamou, pois a configuração do airbnb requer aspas simples
+- Rode o comando: npm run lint-fix
+- Observe que agora as aspas voltam a ser simples, mas se salvamos o arquivo o Prettier as converte para duplas novamente.
+  🤯 🤯 🤯 
+- Vamos instalar outro pacote:
+  ✔️ npm install --save-dev eslint-config-prettier
+- No arquivo .eslintrc.json:
+  ✔️ "extends": ["eslint:recommended", "airbnb", "prettier"],
+  ✔️ Recarregue o VS Code para carregar as novas configurações, caso necessário
+- Agora se salvamos o arquivo, o Prettier entra em ação com as aspas duplas e o ESLint não reclama
 
-‼ Observe que agora há conflito entre o que ESLint exige e o que Prettier faz.
-Neste casp específico seria fácil resolver, pois a regra "quotes" não é uma regra "recommended",
-nós que a incluímos e configuramos,
-mas há casos em que regras "recommended" entram em conflito com regras de formatação do Prettier.
+☮️ A paz agora reina no projeto! 🙏
 
-🧘 O próximo passo é harmonizar ESLint e Prettier.
+Mas ainda podemos melhorar... 
+
