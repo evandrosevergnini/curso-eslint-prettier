@@ -1,32 +1,45 @@
-- Vamos delegar ao Prettier a responsibilidade de formatar nosso código, 
-  desabilitando todas as regras que possam entrar em conflito,
-  mas antes vamos instalar e configurar outro conjunto de regras bastante conhecido:
-  ✔️ npm install --save-dev eslint-config-airbnb
-  ✔️ "extends": ["eslint:recommended", "airbnb"],
-  ✔️ Comente as regras:
-    "rules": {
-      //"quotes": ["error", "double", { "allowTemplateLiterals": true }]
-    }
-- Observe que agora o ESLint reporta outros problemas no arquivo main.js
-  ❗ um erro na arrow function
-  ❕ um warning na chamada ao console
- - Altere o arquivo .prettierrc para:
-    {
-      "singleQuote": false
-    }
-- Abra e salve o arquivo main.js
-- Observe que as aspas mudaram para duplas e o ESLint reclamou, pois a configuração do airbnb requer aspas simples
-- Rode o comando: npm run lint-fix
-- Observe que agora as aspas voltam a ser simples, mas se salvamos o arquivo o Prettier as converte para duplas novamente.
-  🤯 🤯 🤯 
-- Vamos instalar outro pacote:
-  ✔️ npm install --save-dev eslint-config-prettier
+Nesta branch, queremos ir além e fazer com que o ESLint reporte erros de formatação de acordo com as regras do Prettier.
+_ Instale o pacote: npm install --save-dev eslint-plugin-prettier
 - No arquivo .eslintrc.json:
-  ✔️ "extends": ["eslint:recommended", "airbnb", "prettier"],
-  ✔️ Recarregue o VS Code para carregar as novas configurações, caso necessário
-- Agora se salvamos o arquivo, o Prettier entra em ação com as aspas duplas e o ESLint não reclama
+  ✔️ "plugins": ["prettier"],
+  ✔️ "extends": ["eslint:recommended","airbnb","prettier"],
+  ✔️ "rules": {
+    "prettier/prettier": "error",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off"
+  }
+- Altere o arquivo .prettierrc para:
+  ✔️ {
+      "singleQuote": true
+    }
+- Recarregue o VS Code, caso necessário
+- No arquivo main.js, observe que:
+✔️ o ESLint reporta erro pelo uso de aspas duplas, pois Prettier, agora, requer aspas simples
+✔️ Passe o mouse sobre a string "result" e perceba que o erro vem da regra do plugin: 
+  ✔️ Replace `"result"` with `'result'`eslintprettier/prettier
+✔️ Salve o arquivo e Prettier formata e corrige o problema e que ESLint para de reportar o erro, pois já não existe
+- Podemos simplificar no .eslintrc.json:
+  ✔️ Remova a propriedade "plugins"
+  ✔️ "extends": ["eslint:recommended", "airbnb", "plugin:prettier/recommended"],
+  ✔️ Remova a propriedade "rules"
+- Recarregue p VS Code e observe que tudo funciona como antes
+- Altere o arquivo .prettierrc:
+  ✔️ {
+      "printWidth": 100,
+      "semi": false,
+      "singleQuote": true,
+      "tabWidth": 2,
+      "useTabs": false,
+      "trailingComma": "all"
+    }
+- Abra o main.js e salve para aplicar a nova formatação do Prettier
+- Corrija o erro reportado na arrow function
+- Deixe apenas um console.log
+- Corrija o nome da variavel no console.log
+- No arquivo .eslintrc.json:
+  ✔️ "rules": {
+      "no-console": "off"
+    }
+- execute no terminal: node src/main.js
 
-☮️ A paz agora reina no projeto! 🙏
-
-Mas ainda podemos melhorar... 
-
+👏👏👏
