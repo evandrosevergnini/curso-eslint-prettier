@@ -20,15 +20,16 @@
   ✔ Passe o mouse sobre um dos erros e clique em Quick Fix
   ✔ Experimente a configuração de regras usando comentários
 - No arquivo .eslintrc.json explique a sua estrutura básica e o funcionamento das regras
-  ✔ Desabilitar e habilitar a propriedade "extends": "eslint:recommended"
-  ✔ Mostrar na documentação as regras recomendadas
-  ✔ Mostrar na documentação as regras passíveis de serem fixadas
-- Mostrar como usar a flag --fix do ESLint
-  ✔ Adicionar em package.json o script: "lint-fix": "node_modules/.bin/eslint --fix src/"
+  ✔ Desabilite e habilite a propriedade "extends": "eslint:recommended"
+  ✔ Observe que os erros não são mais reportados
+  ✔ Mostre na documentação as regras recomendadas
+  ✔ Mostre na documentação as regras passíveis de serem fixadas
+- Mostre como usar a flag --fix do ESLint
+  ✔ Adicione em package.json o script: "lint-fix": "node_modules/.bin/eslint --fix src/"
   ✔ No arquivo main.js adicionar ";" extras ao final das declarações
-- Rodar: npm run lint-fix
-  ✔ Observe que nem tudo foi corrigidos
-  ✔ Entender porque isso aconteceu examinando a documentação das regras violodas no arquivo main.js
+  ✔ Rode: npm run lint-fix
+  ✔ Observe que nem tudo foi corrigido
+  ✔ Entender porque isso aconteceu examinando a documentação das regras violadas no arquivo main.js
 
 
 
