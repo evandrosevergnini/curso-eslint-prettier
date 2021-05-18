@@ -1,35 +1,31 @@
-- Na Activity Bar do VS Code clique no ícone de extensóes e busque por ESLint
-- Instale a extensão com id dbaeumer.vscode-eslint, normalmente a primeira da lista
-- Abra o arquivo main.js
-- Observe se os erros estão sendo apresentados na tela, provavelmente não estáo
-- Observe se a opção ESLint na Status Bar está bloqueada
-- Habilite a execução do ESLint
-- Agora os erros devem estar sendo exibidos
-- Passe o mouse sobre qualquer dos erros e observe uma pequena modal com informações trazidas pelo ESLint
-- Observe que é exibida uma descrição do erro capturado e na sequência um link com o nome da regra violada
-- Clique nesse link e explore a página com a documentação da regra
-  ✔ The "extends": "eslint:recommended" property in a configuration file enables this rule.
-  ✔ Veja explicações sobre o porquê da regra
-  ✔ Exemplos de uso incorreto
-  ✔ Exemplos de uso correto
-  ✔ Na seção Options, exemplo de configuração
-  ✔ Na seção Resources há links para o código-fonte da regra
-- Procure o código fonte da regra no-alert e veja a estrutura da regra:
-  ✔ é exportado um objeto com as proprieades meta e create
-- De volta ao arquivo main.js:
-  ✔ Passe o mouse sobre um dos erros e clique em Quick Fix
-  ✔ Experimente a configuração de regras usando comentários
-- No arquivo .eslintrc.json explique a sua estrutura básica e o funcionamento das regras
-  ✔ Desabilite e habilite a propriedade "extends": "eslint:recommended"
-  ✔ Observe que os erros não são mais reportados
-  ✔ Mostre na documentação as regras recomendadas
-  ✔ Mostre na documentação as regras passíveis de serem fixadas
-- Mostre como usar a flag --fix do ESLint
-  ✔ Adicione em package.json o script: "lint-fix": "node_modules/.bin/eslint --fix src/"
-  ✔ No arquivo main.js adicionar ";" extras ao final das declarações
-  ✔ Rode: npm run lint-fix
-  ✔ Observe que nem tudo foi corrigido
-  ✔ Entender porque isso aconteceu examinando a documentação das regras violadas no arquivo main.js
+- Instale o plugin Prettier - Code formatter no VS Code
+- Instale o Prettier com dependência de denvolvimento no projeto:
+  ✔ npm install prettier -D --save-exact
+- Configure o Prettier para uso no VS Code
+  ✔ (CTRL+SHIFT+P) >settings (opção JSON)
+  ✔ Adicione as linhas 
+    ✔ "editor.formatOnSave": true,
+    ✔ "editor.defaultFormatter": "esbenp.prettier-vscode"
+    ✔ "prettier.requireConfig": true,
+    ✔ "prettier.resolveGlobalModules": false,
+  ✔ Crie um arquivo de configuração .prettierrc
+  ✔ Adicione um objeto de configuração:
+    ✔ {
+        "singleQuote": true
+      }
+  ✔️ No arquivo main.js triplique a linha de console, como abaixo:
+    ✔️ console.log("result", resultado);
+      console.log("result", resultado);
+      console.log(`result`, resultado);    
+  ✔️ Salve o arquivo e observe que a formatação foi substituída para single quotes, exceto a que usa backtick
+  ✔️ No arquivo .eslintrc.json adicione a seguinte rule:
+    ✔ "rules": {
+        "quotes": ["error", "double", { "allowTemplateLiterals": true }]
+      }
 
+‼ Observe que agora há conflito entre o que ESLint exige e o que Prettier faz.
+Neste casp específico seria fácil resolver, pois a regra "quotes" não é uma regra "recommended",
+nós que a incluímos e configuramos,
+mas há casos em que regras "recommended" entram em conflito com regras de formatação do Prettier.
 
-
+🧘 O próximo passo é harmonizar ESLint e Prettier.
