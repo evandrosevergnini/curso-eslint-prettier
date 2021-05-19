@@ -1,45 +1,53 @@
-Nesta branch, queremos ir além e fazer com que o ESLint reporte erros de formatação de acordo com as regras do Prettier.
-_ Instale o pacote: npm install --save-dev eslint-plugin-prettier
-- No arquivo .eslintrc.json:
-  ✔️ "plugins": ["prettier"],
-  ✔️ "extends": ["eslint:recommended","airbnb","prettier"],
-  ✔️ "rules": {
-    "prettier/prettier": "error",
-    "arrow-body-style": "off",
-    "prefer-arrow-callback": "off"
+Nesta branch vamos criar uma regra customizada e usá-la no nosso projeto.
+- Na raiz do projeto crie a pasta eslint-plugin-ecs
+- Nesta pasta crie um arquivo package.json:
+  {
+    "name": "eslint-plugin-ecs",
+    "version": "1.0.0",
+    "main": "index.js"
   }
-- Altere o arquivo .prettierrc para:
-  ✔️ {
-      "singleQuote": true
-    }
-- Recarregue o VS Code, caso necessário
-- No arquivo main.js, observe que:
-✔️ o ESLint reporta erro pelo uso de aspas duplas, pois Prettier, agora, requer aspas simples
-✔️ Passe o mouse sobre a string "result" e perceba que o erro vem da regra do plugin: 
-  ✔️ Replace `"result"` with `'result'`eslintprettier/prettier
-✔️ Salve o arquivo e Prettier formata e corrige o problema e que ESLint para de reportar o erro, pois já não existe
-- Podemos simplificar no .eslintrc.json:
-  ✔️ Remova a propriedade "plugins"
-  ✔️ "extends": ["eslint:recommended", "airbnb", "plugin:prettier/recommended"],
-  ✔️ Remova a propriedade "rules"
-- Recarregue p VS Code e observe que tudo funciona como antes
-- Altere o arquivo .prettierrc:
-  ✔️ {
-      "printWidth": 100,
-      "semi": false,
-      "singleQuote": true,
-      "tabWidth": 2,
-      "useTabs": false,
-      "trailingComma": "all"
-    }
-- Abra o main.js e salve para aplicar a nova formatação do Prettier
-- Corrija o erro reportado na arrow function
-- Deixe apenas um console.log
-- Corrija o nome da variavel no console.log
+- Nela crie também um arquivo index.js:
+  module.exports = {
+    rules: {
+      'no-template-literals': {
+        // eslint-disable-next-line func-names, object-shorthand
+        create: function (context) {
+          return {
+            TemplateLiteral(node) {
+              context.report(node, 'Do not use template literals')
+            },
+          }
+        },
+      },
+    },
+  }
+- No terminal, execute: npm install --save-dev file:eslint-plugin-ecs
 - No arquivo .eslintrc.json:
+  ✔️ "plugins": ["ecs"],
   ✔️ "rules": {
-      "no-console": "off"
+      "no-console": "off",
+      "ecs/no-template-literals": 1
     }
-- execute no terminal: node src/main.js
+- Caso necessário, recarregue o VS code
+- No arquivo main.js acrescente o código:
+  ✔️ console.log(`result`, result)
+  ✔️ console.log(`result ${result}`)
+- Observe que a nossa regra é aplicada pelo ESLint
+- No arquivo index.js altera a função create:
+  ✔️ create: function (context) {
+      console.log('context', context)
+      return {
+        TemplateLiteral(node) {
+          console.log('node', node)
+          if (node.expressions.length === 0) {
+            context.report(node, 'Do not use template literals')
+          }
+        },
+      }
+    },
+- Recarregue o VS Code, caso necessário
+- Observe que agora apenas a template literal que não usa uma Expression ${} é reportada
+- Remova as outras linhas de console
 
-👏👏👏
+😎
+FIM

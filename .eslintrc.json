@@ -3,12 +3,14 @@
     "browser": true,
     "es2021": true
   },
+  "plugins": ["ecs"],
   "extends": ["eslint:recommended", "airbnb", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": 12,
     "sourceType": "module"
   },
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "ecs/no-template-literals": 2
   }
 }
